@@ -1,0 +1,13 @@
+scylla_encryption_options: >-
+  { 'cipher_algorithm' : 'AES/CBC/PKCS5Padding',
+    'secret_key_strength' : 128,
+    'key_provider': 'GcpKeyProviderFactory',
+    'gcp_host': 'gcp-1' }
+
+append_scylla_yaml:
+  gcp_hosts:
+    gcp-1:
+      gcp_project_id: scylla-kms-test
+      gcp_location: global
+      master_key: test_ring/test_key
+      gcp_impersonate_service_account: test1-262@scylla-kms-test.iam.gserviceaccount.com
